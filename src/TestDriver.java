@@ -9,5 +9,7 @@ public class TestDriver {
 		System.out.println(TripPoint.totalTime());
 		
 		System.out.println(TripPoint.totalDistance());
+		
+		
 	}
 }

@@ -108,7 +108,7 @@ public class TripPoint {
 		//return total time of trip in hours 
 		double timeInMinutes = 0;
 		
-		for (int i = 0; i < trip.size() - 1; ++i) {
+		for (int i = 0; i < trip.size() - 1; ++i) { //trip.size() - 1 accounts for blank line at the end of file
 			timeInMinutes += 5;
 			System.out.println(timeInMinutes);
 		}
@@ -144,7 +144,7 @@ public class TripPoint {
 	public static double totalDistance () {
 		double totalDistance = 0;
 		for (int i = 0; i < trip.size() - 1; ++i) {
-			TripPoint a = trip.get(i);
+			TripPoint a= trip.get(i);
 			TripPoint b = trip.get(i+1);
 			
 			totalDistance += haversineDistance(a, b);
@@ -154,8 +154,14 @@ public class TripPoint {
 	}
 	
 	public static double avgSpeed(TripPoint a, TripPoint b) {
-		return 0.0;
+		double timeElapsed = Math.abs(a.getTime() - b.getTime()); //minutes
+		double distAB = haversineDistance(a, b); //kilometers
+		
+		timeElapsed /= 60.0;
+		
+		return distAB/timeElapsed;
 	}
+	
 	
 	//helper methods
 	
