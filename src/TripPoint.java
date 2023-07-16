@@ -48,18 +48,6 @@ public class TripPoint {
 		//skip the time/longitude/latitude header
 		scnr.nextLine();
 		
-		//Arraylist of each file line
-//		ArrayList<String> lines = new ArrayList<String>();
-//		
-//		while(scnr.hasNextLine()) {
-//			String line = scnr.nextLine();
-//			lines.add(line);
-//		}
-//		
-//		for (int i = 0; i < lines.size(); ++i) {
-//			
-//		}
-		
 		//set delimiter to commas in order to read csv values 
 		//delimits by spaces and commas
 		scnr.useDelimiter(",|\\n");
@@ -82,22 +70,7 @@ public class TripPoint {
 			//System.out.println(trip.get(0).getTime());
 			
 		}
-//		System.out.println(trip.get(0).getTime());
-//		System.out.println(trip.get(0).getLat());
-//		System.out.println(trip.get(0).getLon());
-//		System.out.println(trip.size());
-//		System.out.println(trip.get(trip.size()-1).getTime());
-//		int tempTime = scnr.nextInt();
-//		double tempLat = scnr.nextDouble();
-//		double tempLong = scnr.nextDouble();
-////		
-//		System.out.println(tempTime);
-//		System.out.println(tempLat);
-//		System.out.println(tempLong);
-		
-//		System.out.println(lines.get(0));
-//		System.out.println(lines.get(1));
-//		System.out.println(lines.get(2));
+
 		scnr.close();
 		
 		
@@ -110,7 +83,6 @@ public class TripPoint {
 		
 		for (int i = 0; i < trip.size() - 1; ++i) { //trip.size() - 1 accounts for blank line at the end of file
 			timeInMinutes += 5;
-			System.out.println(timeInMinutes);
 		}
 		
 		timeInMinutes /= 60.0;
