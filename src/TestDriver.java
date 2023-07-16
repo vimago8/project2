@@ -1,8 +1,9 @@
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class TestDriver {
-	public static void main (String[] args) throws FileNotFoundException {
+	public static void main (String[] args) throws FileNotFoundException, IOException {
 		TripPoint.readFile("triplog.csv");
 		
 		//System.out.println(TripPoint.getTrip().toString());

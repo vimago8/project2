@@ -1,39 +1,68 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * 
+ * @author Grace Lee
+ * @version 1.0
+ *
+ */
 public class TripPoint {
 	private double lat;
 	private double lon;
 	private int time;
 	private static ArrayList<TripPoint> trip = new ArrayList<TripPoint>();
 	
-	//constructor
+	/**
+	 * The constructor for a TripPoint
+	 * @param time
+	 * @param lat
+	 * @param lon
+	 */
 	public TripPoint (int time, double lat, double lon) {
 		this.time = time;
 		this.lat = lat;
 		this.lon = lon;
 	}
 	
-	//getters
+	/**
+	 * Returns the time class field, in minutes
+	 * @return this.time
+	 */
 	public int getTime () {
 		return this.time;
 	}
 	
+	/**
+	 * Returns latitude 
+	 * @return this.lat
+	 */
 	public double getLat() {
 		return this.lat;
 	}
-	
+	/**
+	 * Returns longitude
+	 * @return this.lon
+	 */
 	public double getLon() {
 		return this.lon;
 	}
-	
+	/**
+	 * Returns the ArrayList trip, which consists of TripPoints read in from triplog.csv
+	 * @return trip
+	 */
 	public static ArrayList<TripPoint> getTrip() {
 		return trip;
 	}
 	
-	//other methods
+	/**
+	 * Reads triplog.csv and stores each line of time, lat, and long into TripPoints
+	 * @param filename
+	 * @throws FileNotFoundException
+	 */
 	public static void readFile(String filename) throws FileNotFoundException {
 		trip.clear();
 		
@@ -76,7 +105,10 @@ public class TripPoint {
 		
 		
 }
-	
+	/**
+	 * Adds up all time values in the trip array. 
+	 * @return time in hours
+	 */
 	public static double totalTime() {
 		//return total time of trip in hours 
 		double timeInMinutes = 0;
@@ -87,7 +119,7 @@ public class TripPoint {
 		
 		timeInMinutes /= 60.0;
 		
-		return Math.round(timeInMinutes * 100.0) / 100.0; //time in hours
+		return timeInMinutes;// Math.round(timeInMinutes * 100.0) / 100.0; //time in hours
 	}
 	
 	//haversine distance calculation
@@ -121,7 +153,7 @@ public class TripPoint {
 			
 			totalDistance += haversineDistance(a, b);
 		}
-		totalDistance = Math.round(totalDistance * 1000.0) / 1000.0;
+		//totalDistance = Math.round(totalDistance * 1000.0) / 1000.0;
 		return totalDistance;
 	}
 	
