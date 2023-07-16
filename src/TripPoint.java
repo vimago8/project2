@@ -16,7 +16,7 @@ public class TripPoint {
 	private double lat;
 	private double lon;
 	private int time;
-	private static ArrayList<TripPoint> trip= new ArrayList<TripPoint>();
+	private static ArrayList<TripPoint> trip = new ArrayList<TripPoint>();
 	
 	/**
 	 * The constructor for a TripPoint
@@ -63,25 +63,30 @@ public class TripPoint {
 	}
 	
 
-	
+	/**
+	 * I
+	 * @param filename
+	 * @throws IOException
+	 */
 	public static void readFile(String filename) throws IOException {
 		trip.clear();
 		
-		trip = new ArrayList<TripPoint>();
+		//trip = new ArrayList<TripPoint>();
 		
 		File file = new File(filename);
 		Scanner scnr = new Scanner(file);
         scnr.nextLine(); // skip first line
         
-
+        TripPoint newTrip;
         while ((scnr.hasNextLine())) {
         	String line = scnr.nextLine();
         	String[] delimitedLine = line.split(",");
         	int time = Integer.parseInt(delimitedLine[0]);
         	double lat = Double.parseDouble(delimitedLine[1]);
         	double lon = Double.parseDouble(delimitedLine[2]);
-
-            trip.add(new TripPoint(time, lat, lon));
+        	
+        	newTrip = new TripPoint(time, lat, lon);
+            trip.add(newTrip);
 
         }
 
@@ -94,9 +99,9 @@ public class TripPoint {
 	 * @throws IOException 
 	 * @throws FileNotFoundException 
 	 */
-	public static double totalTime() throws FileNotFoundException, IOException {
+	public static double totalTime() {
 		//return total time of trip in hours 
-		ArrayList<TripPoint>trip = getTrip();
+		
 		double timeInMinutes = 0;
 		
 		for (int i = 0; i < trip.size() - 1; ++i) { //trip.size() - 1 accounts for blank line at the end of file
@@ -118,9 +123,6 @@ public class TripPoint {
 	 */
 	public static double haversineDistance(TripPoint a, TripPoint b) {
 		final int earthRadius = 6371; //in kilometers
-		
-		//trip = new ArrayList<TripPoint>();
-		//TripPoint.readFile("triplog.csv");
 		
 		double latA = a.getLat();
 		double latB = b.getLat();
@@ -147,11 +149,11 @@ public class TripPoint {
 	 * @throws IOException 
 	 * @throws FileNotFoundException 
 	 */
-	public static double totalDistance () throws FileNotFoundException, IOException {
+	public static double totalDistance () {
 		double totalDistance = 0;
 		
-		//TripPoint.readFile("triplog.csv");
-		ArrayList<TripPoint>trip = getTrip();
+		
+		//ArrayList<TripPoint>trip = getTrip();
 		
 		for (int i = 0; i < trip.size() - 1; ++i) {
 			TripPoint a= trip.get(i);
@@ -159,7 +161,7 @@ public class TripPoint {
 			
 			totalDistance += haversineDistance(a, b);
 		}
-		//totalDistance = Math.round(totalDistance * 1000.0) / 1000.0;
+		
 		return totalDistance;
 	}
 	
@@ -172,7 +174,7 @@ public class TripPoint {
 	 * @throws FileNotFoundException 
 	 */
 	public static double avgSpeed(TripPoint a, TripPoint b) {
-		//TripPoint.readFile("triplog.csv");
+		
 		
 		double timeElapsed = Math.abs(a.getTime() - b.getTime()); //minutes
 		double distAB = haversineDistance(a, b); //kilometers
@@ -183,6 +185,6 @@ public class TripPoint {
 	}
 	
 	
-	//helper methods
+	
 	
 }
