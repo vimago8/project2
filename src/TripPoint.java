@@ -113,7 +113,9 @@ public class TripPoint {
 			System.out.println(timeInMinutes);
 		}
 		
-		return timeInMinutes / 60.0; //time in hours
+		timeInMinutes /= 60.0;
+		
+		return Math.round(timeInMinutes * 100.0) / 100.0; //time in hours
 	}
 	
 	//haversine distance calculation
