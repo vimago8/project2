@@ -39,39 +39,36 @@ public class TripPoint {
 	}
 	
 	/**
-	 * Returns latitude 
+	 * Returns latitude coordinate
 	 * @return this.lat
 	 */
 	public double getLat() {
 		return this.lat;
 	}
 	/**
-	 * Returns longitude
+	 * Returns longitude coordinate
 	 * @return this.lon
 	 */
 	public double getLon() {
 		return this.lon;
 	}
 	/**
-	 * Returns the ArrayList trip, which consists of TripPoints read in from triplog.csv
+	 * Returns the ArrayList trip, which consists of TripPoints read in from given filename
 	 * @return trip
 	 * @throws IOException 
 	 */
 	public static ArrayList<TripPoint> getTrip() {
-		
 		return trip;
 	}
 	
 
 	/**
-	 * I
-	 * @param filename
+	 * Reads the given file, creates TripPoints from each line, and adds the TripPoints to trip
+	 * @param filename 
 	 * @throws IOException
 	 */
 	public static void readFile(String filename) throws IOException {
 		trip.clear();
-		
-		//trip = new ArrayList<TripPoint>();
 		
 		File file = new File(filename);
 		Scanner scnr = new Scanner(file);
@@ -152,9 +149,6 @@ public class TripPoint {
 	public static double totalDistance () {
 		double totalDistance = 0;
 		
-		
-		//ArrayList<TripPoint>trip = getTrip();
-		
 		for (int i = 0; i < trip.size() - 1; ++i) {
 			TripPoint a= trip.get(i);
 			TripPoint b = trip.get(i+1);
@@ -167,9 +161,9 @@ public class TripPoint {
 	
 	/**
 	 * Returns the average speed between two TripPoints. Speed is in kilometers/hour. 
-	 * @param a
-	 * @param b
-	 * @return
+	 * @param a (first tripPoint)
+	 * @param b (tripPoint after a)
+	 * @return average speed
 	 * @throws IOException 
 	 * @throws FileNotFoundException 
 	 */
