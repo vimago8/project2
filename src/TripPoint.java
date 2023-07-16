@@ -120,7 +120,24 @@ public class TripPoint {
 	
 	//haversine distance calculation
 	public static double haversineDistance(TripPoint a, TripPoint b) {
-		return 0.0;
+		final int earthRadius = 6371;
+		
+		double latA = a.getLat();
+		double latB = b.getLat();
+		
+		double lonA = a.getLon();
+		double lonB = b.getLon();
+		
+		double latDistance = Math.toRadians(latB - latA);
+		double lonDistance = Math.toRadians(lonB - lonA);
+		
+		double part1 = Math.sin(latDistance / 2) * Math.sin(latDistance / 2) + 
+				 Math.cos(Math.toRadians(latA)) * Math.cos(Math.toRadians(latB)) * 
+				 Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
+		double part2 = 2 * Math.atan2(Math.sqrt(part1), Math.sqrt(1-part1));
+		double distance = 6371 * part2;
+		
+		return distance;
 	}
 	
 	public static double totalDistance () {
